@@ -1,0 +1,146 @@
+:root {
+    --colourBackground: #282C34;
+    --colourBackgroundLight: #393e48;
+    --colourROM: #256067;
+    --colourText: #ABB2BF;
+    --colourPurple: #d472f3;
+}
+
+body {
+    background: var(--colourBackground);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Code', monospace;
+    font-weight: 900;
+    color: var(--colourText);
+}
+
+div.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+th > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    /* padding: 10px; */
+    font-size: 2.3rem;
+    padding: 0.45rem;
+    font-weight: 900;
+    color: var(--colourText);
+    background-color: var(--colourBackgroundLight);
+    border: none;
+    cursor: pointer;
+}
+
+div.codelist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#opcodecolumn {
+    background-color: var(--colourPurple);
+    color: #282C34;
+}
+
+
+thead > tr:nth-last-child(3) > th {
+    color: rgba(0,0,0,0);
+    padding: 1rem 0;
+}
+
+thead > tr:last-child > th,
+thead > tr:nth-last-child(2) > th{
+    padding: 0.45rem;
+}
+
+th, td {
+    font-size: 1.35rem;
+    text-align: center;
+    min-width: 2.85rem;
+    min-height: 2.85rem;
+    user-select: none;
+}
+
+td {
+    border: 1px solid var(--colourBackgroundLight);
+    padding: 0.45rem;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    /* border: 1px solid var(--colourText); */
+}
+
+thead > tr:last-child > th,
+thead > tr:nth-last-child(2) > th,
+tbody > tr:last-child > td
+{
+    border-bottom: 1px solid var(--colourText);
+}
+
+thead > tr:last-child > th:first-child, tbody > tr > td:first-child,
+thead > tr:last-child > th:last-child, tbody > tr > td:last-child,
+thead > tr:last-child > th:nth-last-child(2), 
+tbody > tr:not(:nth-child(3), :nth-child(4), :nth-child(5), :nth-child(6), :nth-child(7), :nth-child(8)) > td:nth-last-child(8),
+tbody > tr:nth-child(3) > td:nth-last-child(6), /* LDI */
+tbody > tr:nth-child(4) > td:nth-last-child(7), /* LDM */
+tbody > tr:nth-child(5) > td:nth-last-child(7), /* STM */
+tbody > tr:nth-child(6) > td:nth-last-child(6), /* JMP */
+tbody > tr:nth-child(7) > td:nth-last-child(5), /* BIN */
+tbody > tr:nth-child(8) > td:nth-last-child(5) /* BIZ */
+{
+    border-right: 1px solid var(--colourText);
+}
+
+thead > tr:last-child > th:first-child, tbody > tr > td:first-child {
+    border-left: 1px solid var(--colourText);
+}
+
+/* Disabled row (for video) */
+/* tbody > tr:nth-child(1) > td, */
+/* tbody > tr:nth-child(2) > td, */
+/* tbody > tr:nth-child(4) > td */
+/* tbody > tr:nth-child(5) > td */
+/* tbody > tr:nth-child(6) > td, */
+/* tbody > tr:nth-child(7) > td, */
+/* tbody > tr:nth-child(8) > td */
+/* {
+    color: var(--colourBackgroundLight)!important;
+} */
+
+/* Selected instruction */
+tbody > tr.active > td {
+    background: var(--colourText)!important;
+    color: var(--colourBackground)!important;
+    border: 1px solid var(--colourBackgroundLight)!important;
+    transition: 0.3s;
+}
+
+#instructionsymbol {
+    text-align: left;
+}
+
+@keyframes flash {
+    0% { background: var(--colourROM); }
+    100% { background: var(--colourBackgroundLight); }
+}

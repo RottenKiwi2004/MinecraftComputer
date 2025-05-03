@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpCode</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="codelist">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th><button id="bit15">0</button></th>  <th><button id="bit14">0</button></th>  <th><button id="bit13">0</button></th>  <th><button id="bit12">0</button></th> 
+                        <th><button id="bit11">0</button></th>  <th><button id="bit10">0</button></th>  <th><button id="bit9">0</button> </th>  <th><button id="bit8">0</button> </th> 
+                        <th><button id="bit7">0</button> </th>  <th><button id="bit6">0</button> </th>  <th><button id="bit5">0</button> </th>  <th><button id="bit4">0</button> </th> 
+                        <th><button id="bit3">0</button> </th>  <th><button id="bit2">0</button> </th>  <th><button id="bit1">0</button> </th>  <th><button id="bit0">0</button> </th> 
+                        <th></th><th colspan="6" id="instructionsymbol"></th>
+                    </tr>
+                    <tr>
+                        <th></th><th colspan="4" id="bitcolumn"></th><th colspan="12"></th>
+                    <tr>
+                        <th>-</th>
+                    </tr>
+                    <tr>
+                        <th></th><th colspan="4" id="opcodecolumn">Opcode</th><th colspan="19"></th>
+                    </tr>
+                    <tr>
+                        <th>Mnemonic</th>
+                        <th>15</th><th>14</th><th>13</th><th>12</th><th>11</th><th>10</th><th>9</th><th>8</th>
+                        <th>7</th><th>6</th><th>5</th><th>4</th><th>3</th><th>2</th><th>1</th><th>0</th>
+                        <th colspan="7">Symbol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--              Mnemonic       15          14          13          12          11          10           9           8           7           6           5           4           3           2           1           0      |                  Rd           <-           Ra          Sym           Rb   -->
+                    <tr id="inst0" ><td>NOP</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>   <td>  </td>  <td>  </td>  <td>  </td>  <td>  </td>  <td>  </td>  <td>  </td>  <td>  </td>  </tr>
+                    <tr id="inst1" ><td>HLT</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>1</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>   <td>  </td>  <td>  </td>  <td>  </td>  <td>  </td>  <td>  </td>  <td>  </td>  <td>  </td>  </tr>
+                    <tr id="inst2" ><td>LDI</td>  <td>0</td>  <td>0</td>  <td>1</td>  <td>0</td>  <td colspan="3">      Rd     </td>  <td>0</td>  <td colspan="8">                                Immediate                                </td>   <td>  </td>  <td>Rd</td>  <td><-</td>  <td colspan="3">    Immediate   </td>  <td>  </td>  </tr>
+                    <tr id="inst3" ><td>LDM</td>  <td>0</td>  <td>0</td>  <td>1</td>  <td>1</td>  <td colspan="3">      Rd     </td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>   <td>  </td>  <td>Rd</td>  <td><-</td>  <td colspan=2>M[R7]</td>  <td>  </td>  <td>  </td>  </tr>
+                    <tr id="inst4" ><td>STM</td>  <td>0</td>  <td>1</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Ra     </td>  <td>1</td>  <td>1</td>  <td>1</td>   <td colspan=2>M[R7]</td>  <td><-</td>  <td>Ra</td>  <td>  </td>  <td>  </td>  <td>  </td>  </tr>
+                    <tr id="inst5" ><td>JMP</td>  <td>0</td>  <td>1</td>  <td>0</td>  <td>1</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="8">                                 Address                                 </td>   <td>  </td>  <td>PC</td>  <td><-</td>  <td colspan="3">     Address    </td>  <td>  </td>  </tr>
+                    <tr id="inst6" ><td>BIN</td>  <td>0</td>  <td>1</td>  <td>1</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="8">                                 Address                                 </td>   <td>  </td>  <td>PC</td>  <td><-</td>  <td colspan="4">     Address if N            </td>  </tr>
+                    <tr id="inst7" ><td>BIZ</td>  <td>0</td>  <td>1</td>  <td>1</td>  <td>1</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="8">                                 Address                                 </td>   <td>  </td>  <td>PC</td>  <td><-</td>  <td colspan="4">     Address if Z            </td>  </tr>
+                    <tr id="inst8" ><td>ADD</td>  <td>1</td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Rd     </td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Ra     </td>  <td colspan="3">      Rb     </td>   <td>  </td>  <td>Rd</td>  <td><-</td>  <td>Ra</td>  <td> +</td>  <td>Rb</td>  <td>  </td>  </tr>
+                    <tr id="inst9" ><td>SUB</td>  <td>1</td>  <td>0</td>  <td>0</td>  <td>1</td>  <td colspan="3">      Rd     </td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Ra     </td>  <td colspan="3">      Rb     </td>   <td>  </td>  <td>Rd</td>  <td><-</td>  <td>Ra</td>  <td> -</td>  <td>Rb</td>  <td>  </td>  </tr>
+                    <tr id="inst10"><td>OR </td>  <td>1</td>  <td>0</td>  <td>1</td>  <td>0</td>  <td colspan="3">      Rd     </td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Ra     </td>  <td colspan="3">      Rb     </td>   <td>  </td>  <td>Rd</td>  <td><-</td>  <td>Ra</td>  <td> |</td>  <td>Rb</td>  <td>  </td>  </tr>
+                    <tr id="inst11"><td>AND</td>  <td>1</td>  <td>0</td>  <td>1</td>  <td>1</td>  <td colspan="3">      Rd     </td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Ra     </td>  <td colspan="3">      Rb     </td>   <td>  </td>  <td>Rd</td>  <td><-</td>  <td>Ra</td>  <td> &</td>  <td>Rb</td>  <td>  </td>  </tr>
+                    <tr id="inst12"><td>XOR</td>  <td>1</td>  <td>1</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Rd     </td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Ra     </td>  <td colspan="3">      Rb     </td>   <td>  </td>  <td>Rd</td>  <td><-</td>  <td>Ra</td>  <td> ^</td>  <td>Rb</td>  <td>  </td>  </tr>
+                    <tr id="inst13"><td>INC</td>  <td>1</td>  <td>1</td>  <td>0</td>  <td>1</td>  <td colspan="3">      Rd     </td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Ra     </td>  <td>0</td>  <td>0</td>  <td>0</td>   <td>  </td>  <td>Rd</td>  <td><-</td>  <td>Ra</td>  <td> +</td>  <td> 1</td>  <td>  </td>  </tr>
+                    <tr id="inst14"><td>DEC</td>  <td>1</td>  <td>1</td>  <td>1</td>  <td>0</td>  <td colspan="3">      Rd     </td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Ra     </td>  <td>0</td>  <td>0</td>  <td>0</td>   <td>  </td>  <td>Rd</td>  <td><-</td>  <td>Ra</td>  <td> -</td>  <td> 1</td>  <td>  </td>  </tr>
+                    <tr id="inst15"><td>SHR</td>  <td>1</td>  <td>1</td>  <td>1</td>  <td>1</td>  <td colspan="3">      Rd     </td>  <td>0</td>  <td>0</td>  <td>0</td>  <td colspan="3">      Ra     </td>  <td>0</td>  <td>0</td>  <td>0</td>   <td>  </td>  <td>Rd</td>  <td><-</td>  <td>Ra</td>  <td>>></td>  <td> 1</td>  <td>  </td>  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
